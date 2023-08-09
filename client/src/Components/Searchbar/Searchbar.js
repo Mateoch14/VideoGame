@@ -18,7 +18,7 @@ const Searchbar = ({onChange}) =>{
                 placeholder="Filtrar por título"
                 id="searcher"
             />
-             <span class="input-border input-border-alt"></span>
+             <span className="input-border input-border-alt"></span>
             {searcher !== '' && <p><b>Buscando:</b> {searcher}</p>}
         </div>
     )

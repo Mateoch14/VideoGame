@@ -3,12 +3,12 @@ import './styles.css'
 const NewGames = () => {
     return(
         <div>
-            <form  action="" class="containerform">
+            <form  action="" className="containerform">
                 <div className='input-containerform'>
-                    <div class="input-content">
-                        <div class="input-dist">
+                    <div className="input-content">
+                        <div className="input-dist">
                         <span id="SubscribeTXT">New Game</span>
-                            <div class="input-type">
+                            <div className="input-type">
                                 <label htmlFor="titulo">Título:</label>
                                 <input type="text" id="titulo" name="titulo" required />
                                 <label htmlFor="descripcion">Descripción:</label>
