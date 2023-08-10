@@ -5,7 +5,7 @@
     background: #f5f5f5;
     position: relative;
     padding: 1.8rem;
-    border: 2px solid #c3c6ce;
+    border: 1px solid #c3c6ce;
    }
    
    .card-details {
@@ -19,7 +19,7 @@
     background-color: #008bf8;
     color: #fff;
     font-size: 1rem;
-    padding: .5rem 1rem;
+    padding: 0.5rem 1rem;
    }
    
    .text-body {
