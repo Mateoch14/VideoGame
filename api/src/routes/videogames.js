@@ -6,7 +6,7 @@ const { API_KEY, API_URL } = process.env;
 
 router.get('/', async (req, res) => {
     try {
-        const response = await axios(`${API_URL}/games?key=${API_KEY}&page_size=15`);
+        const response = await axios(`${API_URL}/games?key=${API_KEY}&page_size=50`);
         const results = response.data.results.map(({
             id, name, background_image, genres, ratings, platforms
         }) => {
