@@ -20,7 +20,7 @@ const Header = ({onSearch, onOrder}) => {
                         <Searchbar
                             onChange={onSearch}
                         />
-                        <button className='buttonh' type='button' onClick={handleOndOrder}>
+                        <button className='btn' type='button' onClick={handleOndOrder}>
                             Ordenar {orderBy === 'title' ? 'alfabéticamente' : 'por ID'}
                         </button>
                     </>
