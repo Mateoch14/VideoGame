@@ -5,11 +5,11 @@ import { apiGet } from '../../utils/http';
 import Card from '../Card/Card';
 import './styles.css';
 
-const VideoGames = ({list}) => {
+const VideoGames = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         const fetchData = async () => {
-            const items = await apiGet('videogames');
+            const items = await apiGet('/');
             dispatch(setItems(items));
         };
         fetchData();
@@ -23,7 +23,7 @@ const VideoGames = ({list}) => {
                 gameslist.length ? gameslist.map((games) => (
                     <Card 
                     key={games.id}
-                    title={games.name}
+                    title={games.name || games.title}
                     description={games.description}
                     image={games.image}
                     id={games.id}
