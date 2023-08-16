@@ -42,7 +42,7 @@ router.get('/search/:name', async (req, res) => {
     const { name } = req.params;
     try {
         const { data } = await axios(`${API_URL}/games?search=${name}&key=${API_KEY}`);
-        const results = data.results.map(({
+        let results = data.results.map(({
             id, name, background_image, genres, ratings, platforms
         }) => {
             return {
@@ -53,7 +53,21 @@ router.get('/search/:name', async (req, res) => {
                 ratings,
                 platforms: platforms.map((e) => e.platform.name)
             }
-        })
+        });
+        // Buscar en local también
+       const localData = await Videogame.findAll({
+            where: {
+                title: {
+                    [Sequelize.Op.iLike]: `%${name}%`,
+                },
+            }
+        });
+        if (localData.length > 0) {
+            results = [
+                ...localData,
+                ...results,
+            ];
+        }
         res.json(results);
     } catch (error) {
         res.status(400);
