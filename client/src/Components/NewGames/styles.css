@@ -9,7 +9,6 @@
   padding: 10px 0;
 }
 .form-element label {
-  font-size: 12px;
   font-weight: bold;
 }
 .form-element input, .form-element textarea {
@@ -24,4 +23,19 @@
   color: red;
   padding: 0;
   margin: 0;
+}
+.list-genres {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.list-genres li {
+  display: inline-block;
+  border: 1px solid #CCC;
+  text-align: center;
+  font-size: 12px;
+  margin: 1px;
+  padding: 4px;
+  border-radius: 4px;
 }

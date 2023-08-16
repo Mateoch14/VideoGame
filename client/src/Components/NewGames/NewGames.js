@@ -1,10 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { apiPost } from '../../utils/http';
+import { setGenres } from '../../features/videogames/videogamesSlice';
+
+import { apiPost, apiGet } from '../../utils/http';
 
 import './styles.css'
 
 const NewGames = () => {
+    const genres = useSelector(state => state.videogames.genres);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (genres.length === 0) {
+            const fetchData = async () => {
+                const genres = await apiGet('genres');
+                dispatch(setGenres(genres));
+            };
+            fetchData();
+        }
+    }, [genres, dispatch]);
 
     const [formData, setFormData] = useState({
         name: '',
@@ -13,9 +28,9 @@ const NewGames = () => {
         platforms: '',
         release_date: '',
         rating: '',
-        genres: '',
     });
     const [requiredFields, setRequiredFields] = useState({});
+    const [selectedGenres, setSelectedGenres] = useState({});
 
     const handleOnChange = (event) => {
         const { target: { value, name } } = event;
@@ -25,7 +40,21 @@ const NewGames = () => {
         }));
     };
 
+    const handleOnCheck = (event) => {
+        // console.log(event.target.checked, event.target.name);
+        const { target: { name, checked, id } } = event;
+        setSelectedGenres(prev => ({
+            ...prev,
+            [id]: {
+                checked,
+                name,
+            },
+        }));
+    };
+
     const handleOnSubmit = () => {
+        const genresChecked = Object.keys(selectedGenres).filter(item => selectedGenres[item].checked);
+        const finalCheckedItems = genresChecked.map(checked => selectedGenres[checked].name);
         let countRequiredField = 0;
         Object.keys(formData).forEach(item => {
             let isRequiredField = formData[item] === '';
@@ -37,6 +66,7 @@ const NewGames = () => {
         });
         if (countRequiredField === 0) {
             const sendForm = async () => {
+                formData['genres'] = finalCheckedItems;
                 const { isSaved, message } = await apiPost('', formData);
                 if (isSaved) {
                     setFormData({
@@ -89,8 +119,16 @@ const NewGames = () => {
                 </div>
                 <div className="form-element">
                     <label>Generos</label>
-                    <input type="text" name="genres"  value={formData.genres} onChange={handleOnChange} />
-                    {requiredFields.genres && <p className='form-input-error'>Este campo es obligatorio</p>}
+                    <ul className="list-genres">
+                        {genres.length > 0 ? genres.map(genre => (
+                            <li key={genre.id}><input type="checkbox" name={genre.name} id={genre.id} onChange={handleOnCheck} /><label htmlFor={genre.id}>{genre.name}</label></li>
+                        )) : <li>Cargando géneros ...</li>}
+                    </ul>
+
+
+
+
+
                 </div>
                 <div className="form-element">
                     <button type="button" className="btn" onClick={handleOnSubmit}>Agregar</button>

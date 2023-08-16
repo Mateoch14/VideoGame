@@ -101,7 +101,7 @@ router.post('/', async (req, res) => {
         const genresDb = await Genres.findAll({
             where: {
                 title: {
-                    [Sequelize.Op.in]: [genres],
+                    [Sequelize.Op.in]: genres,
                 },
             },
         });

@@ -17,6 +17,10 @@ body{
   padding: 0.5rem 1rem;
   text-decoration: none;
   cursor: pointer;
-  display: block;
+  display: inline-block;
   text-align: center;
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: default;
 }

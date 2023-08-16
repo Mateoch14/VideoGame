@@ -7,7 +7,7 @@ const Navbar = () => {
         <nav>
         <ul>
             <li>
-           <Link to="/" className={pathname === '/' ? 'active' : ''}>Inicio</Link>
+           <Link to="/home" className={pathname === '/home' ? 'active' : ''}>Inicio</Link>
             </li>
             <li>
             <Link to="/add" className={pathname === '/add' ? 'active' : ''}>Agregar</Link>

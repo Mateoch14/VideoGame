@@ -1,0 +1,26 @@
+.search-bar {
+    padding: 10px;
+}
+
+.searcher {
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    border: 1px solid #ccc;
+    width: 250px;
+}
+.filters {
+    margin: 0;
+    padding: 0;
+}
+.filters li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.btn-clear {
+    background: transparent;
+    border: 0;
+    color: #333;
+    text-decoration: underline;
+    cursor: pointer;
+}
