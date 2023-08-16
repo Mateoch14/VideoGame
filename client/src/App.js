@@ -8,9 +8,8 @@ import {
 import Container from './Components/Container/Container';
 import VideoGames from './Components/VideoGames/VideoGames';
 import Detail from './Components/Detail/Detail';
-import NewGames from './Components/NewGames/NewGames'
-import { useState } from 'react';
-import { result } from './constants/Mocks';
+import NewGames from './Components/NewGames/NewGames';
+import Landing from './Components/Landing/Landing';
 
 
 const orderObjectArrayAlphabetically = (array, key) =>{
@@ -26,35 +25,25 @@ const orderObjectArrayAlphabetically = (array, key) =>{
 }
 
 
-function App() {
-  const [gameslist, setGamesList] = useState(result)
-  const [orderBy, serOrderBy] = useState('title')
-  
-  const handleOnSearch = (textToSearch) => {
-    const filtered = textToSearch !== '' ? result.filter(res => res.title.toLowerCase().includes(textToSearch.toLowerCase())) : result
-    setGamesList(filtered)
-  }
-
-  const handleOndOrder = () =>{
-    const ordered = orderObjectArrayAlphabetically(gameslist, orderBy)
-    serOrderBy(orderBy === 'title' ? 'id' : 'title')
-    setGamesList(ordered.slice(0))
-  }
+function App() {  
   return (
     <Router>
-      <Container onSearch={handleOnSearch} onOrder={handleOndOrder}>
-        <Switch>
-          <Route path="/" exact>
-            <VideoGames list={gameslist}/>
+      <Switch>
+        <Route path="/" exact>
+          <Landing />
+        </Route>
+        <Container>
+          <Route path="/home">
+            <VideoGames />
           </Route>
           <Route path="/add">
-           <NewGames/>
+          <NewGames/>
           </Route>
           <Route path= "/detail/:id">
             <Detail/>
           </Route>
-        </Switch>
-      </Container>
+        </Container>
+      </Switch>
     </Router>
   );
 }

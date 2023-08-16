@@ -1,0 +1,10 @@
+.landing {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.landing-content {
+    max-width: 50%;
+}

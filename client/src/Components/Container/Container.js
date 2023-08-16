@@ -1,14 +1,16 @@
-import Footer from "../Footer/Footer"
-import Header from "../Header/Header"
+import Footer from '../Footer/Footer';
+import Header from '../Header/Header';
 
-import './styles.css'
+import './styles.css';
 
-const Container = ({children, onSearch,onOrder}) => {
+const Container = ({ children }) => {
 
     return(
         <div className="container">
-            <Header onSearch={onSearch} onOrder={onOrder}/>
-            {children}
+            <Header/>
+            <main className="main-container">
+                {children}
+            </main>
             <Footer/>
         </div>
     )
