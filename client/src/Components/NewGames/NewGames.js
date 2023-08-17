@@ -34,6 +34,12 @@ const NewGames = () => {
 
     const handleOnChange = (event) => {
         const { target: { value, name } } = event;
+
+        setRequiredFields(prev => ({
+            ...prev,
+            [name]: value === '',
+        }));
+
         setFormData((prev) => ({
             ...prev,
             [name]: value,
