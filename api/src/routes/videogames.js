@@ -14,7 +14,19 @@ const { API_KEY, API_URL } = process.env;
 
 router.get('/', async (req, res) => {
     try {
-        const localData = await Videogame.findAll();
+        const localData = await Videogame.findAll({
+            include: {
+                model: Genres,
+                attributes: ['title'],
+                through: {
+                    attributes: [],
+                }
+            }
+        });
+        const formatedData = JSON.parse(JSON.stringify(localData, null, 2)).map(item => ({
+            ...item,
+            genres: item.genres.map(i => i.title),
+        }));
         const response = await axios(`${API_URL}/games?key=${API_KEY}&page_size=100`);
         let results = response.data.results.map(({
             id, name, background_image, genres, ratings, platforms
@@ -29,7 +41,7 @@ router.get('/', async (req, res) => {
             }
         });
         results = [
-            ...localData,
+            ...formatedData,
             ...results,
         ];
         res.json(results);
@@ -80,6 +92,18 @@ router.get('/genres', async (req, res) => {
         res.json(data.results);
     } catch (error) {
         res.status(400);
+    }
+});
+
+router.delete('/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const count = await Videogame.destroy({
+            where: { id },
+        });
+        res.json({ count });
+    } catch (error) {
+        res.status(400).json({ error });
     }
 });
 
