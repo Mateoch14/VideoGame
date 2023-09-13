@@ -16,10 +16,19 @@ const Detail = () => {
         };
         fetchData();
     }, [id]);
+    const platforms = videogameData?.platforms;
     return(
         <div className='detail-receipt'>
-            <h1>{videogameData.title}</h1>
+            <h1>{videogameData.name}</h1>
             <img src={videogameData.image} alt={videogameData.title} />
+            <h2>Rating: {videogameData.rating}</h2>
+            <ul>{Array.isArray(platforms) ? platforms?.map((platform, index) => {
+                return (
+                    <li key={index}>
+                        {platform}
+                    </li>
+                )
+            }) : <li>{platforms}</li>}</ul>
             <div dangerouslySetInnerHTML={{ __html: videogameData.description }}></div>
         </div>
     )

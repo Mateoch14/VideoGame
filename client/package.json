@@ -18,7 +18,8 @@
     "start": "react-scripts start",
     "build": "NODE_OPTIONS='--openssl-legacy-provider' react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint src/**/*.{js,jsx,ts,tsx,json}"
   },
   "eslintConfig": {
     "extends": [
@@ -37,5 +38,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint": "^8.49.0",
+    "eslint-plugin-react": "^7.33.2"
   }
 }
