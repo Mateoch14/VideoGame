@@ -1,7 +1,7 @@
 import './styles.css';
 import { Link } from 'react-router-dom';
 
-const Card = ({title, image, description ,id}) => {
+const Card = ({title, image ,id}) => {
 
     return(
         <div className="card">

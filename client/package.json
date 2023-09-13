@@ -19,7 +19,8 @@
     "build": "NODE_OPTIONS='--openssl-legacy-provider' react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint src/**/*.{js,jsx,ts,tsx,json}"
+    "lint": "eslint src/**/*.{js,jsx,ts,tsx,json}",
+    "lint:fix": "eslint --fix src/**/*.{js,jsx,ts,tsx,json}"
   },
   "eslintConfig": {
     "extends": [

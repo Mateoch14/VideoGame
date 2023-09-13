@@ -11,20 +11,6 @@ import Detail from './Components/Detail/Detail';
 import NewGames from './Components/NewGames/NewGames';
 import Landing from './Components/Landing/Landing';
 
-
-const orderObjectArrayAlphabetically = (array, key) =>{
-  return array.sort((a,b) => {
-    let nameA = a[key]
-    if(key === 'title') nameA = nameA.toLowerCase()
-    let nameB = b[key]
-    if(key === 'title') nameB = nameB.toLowerCase()
-    if(nameA < nameB) return -1
-    if(nameA > nameB) return 1
-    return 0
-  })
-}
-
-
 function App() {  
   return (
     <Router>
