@@ -111,6 +111,7 @@ router.post('/', async (req, res) => {
     try {
         // name, description, genres, id, image, platforms, rating, released
         const { name, description, genres, image, platforms, rating, release_date } = req.body;
+        
         // Se guardan los datos en la base de datos y luego se devuelve un mensaje de estado (success / error)
         const request = await Videogame.create({
            title: name,
